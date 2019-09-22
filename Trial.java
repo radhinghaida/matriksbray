@@ -11,11 +11,12 @@ public class Trial {
         GetMatriks myMatriks = new GetMatriks();
         myMatriks.inputMatriks(A, B, m, n);
         GaussEli Eli = new GaussEli();
-        Eli.printMatrix(A);
+        Output outMatrix = new Output();
+        outMatrix.printMatrix(A);
         Eli.GaussEli(A,B);
         System.out.println("");
-        Eli.printMatrix(A);
-        Eli.printHasilPersamaan(B);
+        outMatrix.printMatrix(A);
+        outMatrix.printHasilPersamaan(B);
         
     }
 

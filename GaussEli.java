@@ -33,7 +33,14 @@ public class GaussEli {
 
             for (j = steps-1; j < totalRow; j++) 
             {
-                
+                // Checking if Row contains all zero or not
+                if (isAllZero(A, j)) {
+                    if (j + 1 < totalRow) {
+                        SwapRow(A, j, j+1);
+                        SwapEl(B, j, j+1);
+                    }
+                }                
+
                 if ((j == rowPivot) && (A[j][j] != 1)) // Ketika Row pivot
                 {
                     divider = A[j][j];
@@ -73,11 +80,18 @@ public class GaussEli {
     } // End of SwapRow
 
     static void SwapCol(double[][] A, int col1, int col2) {
-    double[] temp;
-    temp = A[col1];
-    A[col1] = A[col2];
-    A[col2] = temp;
+        double[] temp;
+        temp = A[col1];
+        A[col1] = A[col2];
+        A[col2] = temp;
     } // End of SwapCol
+
+    static void SwapEl(double[] B, int row1, int row2) {
+        double temp;
+        temp = B[row1];
+        B[row1] = B[row2];
+        B[row2] = temp;
+    } // End of SwapEl
 
     static boolean isAllZero(double[][] A, int row) {
         int i, colLength;
