@@ -58,6 +58,37 @@ public class GaussEli {
             } // End of For
             steps++;
         }
-    }       
+    } // End of GaussEli       
     
+    static void SwapRow(double[][] A, int row1, int row2) {
+        int i, colLength;
+        double temp;
+        colLength = A.length;
+        for (i = 0; i < colLength; i++) {
+            temp = A[i][row1];
+            A[i][row1] = A[i][row2];
+            A[i][row2] = temp;
+        }
+
+    } // End of SwapRow
+
+    static void SwapCol(double[][] A, int col1, int col2) {
+    double[] temp;
+    temp = A[col1];
+    A[col1] = A[col2];
+    A[col2] = temp;
+    } // End of SwapCol
+
+    static boolean isAllZero(double[][] A, int row) {
+        int i, colLength;
+        colLength = A.length;
+        boolean allZero = true;
+        for (i = 0; i < colLength; i++) {
+            if (A[i][row] != 0) {
+                allZero = false;
+            }
+        }
+        return allZero;
+    } // End of isAllZero
+
 }
