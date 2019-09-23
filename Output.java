@@ -12,7 +12,12 @@ public class Output {
         totalRow = A[0].length;
         for (j = 0; j < totalRow; j++) {
             for (i = 0; i < totalCol; i++) {
-                System.out.print(df2.format(A[i][j]) + " ");
+                if (df2.format(A[i][j]) == "-0") {
+                    System.out.print(0 + " ");
+                }
+                else {
+                    System.out.print(df2.format(A[i][j]) + " ");
+                }
             }
             System.out.println("");
         }

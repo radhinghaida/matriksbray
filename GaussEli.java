@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GaussEli {
     public static void GaussEli(double[][] A, double[] B) 
     {   // Matriks A (Koefisien), Matriks B (Hasil dari tiap persamaan)
-        int i, j, k, maxIdx, steps, rowPivot;
+        int i, j, k, steps, rowPivot;
         double divider, multiplier;
 
         int totalCol = A.length;
@@ -67,6 +67,36 @@ public class GaussEli {
         }
     } // End of GaussEli       
     
+
+
+    public static void GaussJordan(double[][] A, double[] B) {
+        int i, j, k, steps, rowPivot;
+        double divider, multiplier;
+
+        int totalCol = A.length;
+        int totalRow = A[0].length;
+        GaussEli(A,B);
+
+        steps = totalRow;
+
+        while (steps > 0) {
+            rowPivot = steps-1;
+            for (j = rowPivot-1; j >= 0; j--) {
+                if (!(isAllZero(A, j))) {
+                    if (A[rowPivot][j] != 0) {
+                        multiplier = A[steps-1][j];
+                        A[rowPivot][j] -= (multiplier);
+                        B[j] -= (multiplier) * B[rowPivot];
+                    }
+                }
+            } // End of For
+            steps--;
+        } // End of While
+
+    }
+
+
+
     static void SwapRow(double[][] A, int row1, int row2) {
         int i, colLength;
         double temp;
@@ -104,5 +134,10 @@ public class GaussEli {
         }
         return allZero;
     } // End of isAllZero
+
+    static void noNegZeroMat(double[][] A) {
+
+
+    }
 
 }

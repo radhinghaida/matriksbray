@@ -9,15 +9,22 @@ public class Trial {
         double[][] A = new double[m][m];
         double[] B = new double[m];
         GetMatriks myMatriks = new GetMatriks();
+        GetDeterminant myDeterminant = new GetDeterminant();
         myMatriks.inputMatriks(A, B, m, n);
         GaussEli Eli = new GaussEli();
         Output outMatrix = new Output();
+        System.out.print("Determinant Matriks Input : ");
+        System.out.println(myDeterminant.gaussDeterminant(A));
         outMatrix.printMatrix(A);
         Eli.GaussEli(A,B);
         System.out.println("");
         outMatrix.printMatrix(A);
         outMatrix.printHasilPersamaan(B);
-        
+        System.out.println("Gauss Jordan : ");
+        Eli.GaussJordan(A,B);
+        System.out.println("");
+        outMatrix.printMatrix(A);
+        outMatrix.printHasilPersamaan(B);
     }
 
 }
