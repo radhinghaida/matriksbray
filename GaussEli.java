@@ -1,8 +1,13 @@
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 
 public class GaussEli {
+
+    private static DecimalFormat df3 = new DecimalFormat("#.###");
+
     public static void GaussEli(double[][] A, double[] B) 
     {   // Matriks A (Koefisien), Matriks B (Hasil dari tiap persamaan)
         int i, j, k, steps, rowPivot;
@@ -135,9 +140,76 @@ public class GaussEli {
         return allZero;
     } // End of isAllZero
 
-    static void noNegZeroMat(double[][] A) {
+    static void solveSPL(double[][] A, double[] B) { // Masih bermasalah kalo ada free variable
+        int i, j, totalFreeVar, totalRow, initialASCII;
+        double tempConstant;
+        boolean thereIsAllZero = false;
+        boolean hasSolution = true;
+        double[] solutionConst = new double[B.length];
+        char[] variable = new char[B.length];
+        char mark = '`';
+        totalRow = A[0].length;
+        for (i = 0; i < A[0].length; i++) {
+            if (isAllZero(A, i)) {
+                thereIsAllZero = true;
+                if (B[i] != 0) {
+                    hasSolution = false;
+                }
+            }
+        } // Checking tipe Solusi
+
+        totalFreeVar = 0;
+        initialASCII = 97;
+
+        /* Isi array variable dengan mark, yaitu ` . Isi array solution dengan 0*/
+        for (i = 0; i < totalRow; i++) {
+            variable[i] = '`';
+            solutionConst[i] = 0;
+        }
 
 
-    }
+        if (!(hasSolution)) {
+            System.out.println("Tidak ada solusi");
+        }
+        else {
+            for (i = (A[0].length) - 1; i >= 0; i--) {
+                if (isAllZero(A, i)) {
+                    totalFreeVar += 1;
+                    variable[i] = Character.toUpperCase((char)initialASCII);
+                    initialASCII += 1;
+                    System.out.println("X"+ (i+1) + " = " + variable[i]);
+                }
+                else {
+                    tempConstant = B[i];
+                    System.out.print("X" + (i+1) + " = ");
+                    // Get full Constant, not just tempConstant
+                    if (i != A[0].length - 1) {
+                        for (j = (A.length) - 1; j > i; j--) {
+                            if (variable[j] == mark) {
+                                tempConstant -= A[j][i] * solutionConst[j];
+                            }
+                            solutionConst[i] = tempConstant;
+                        }
+                    }
+                    else {
+                        solutionConst[i] = tempConstant;
+                    }
+                    System.out.print(df3.format(solutionConst[i]));
+                    for (j = (A.length) - 1; j > i; j--) {
+                        if (variable[j] != mark) {
+                            if (A[j][i] > 0) {
+                                System.out.print(" - " + df3.format(Math.abs(A[j][i])) + variable[j]);
+                            }
+                            else {
+                                System.out.print(" + " + df3.format(Math.abs(A[j][i])) + variable[j]);
+                            }
+                        }
+                    }
+                    System.out.println("");
+                } // End of Else
+            }
+        }
+
+    } // End of solveSPL
 
 }

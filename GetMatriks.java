@@ -62,4 +62,19 @@ public class GetMatriks {
             B[i] = input.nextDouble();
         }
     }
+
+    static void inputMatriksInterpolasi(double[][] A, double[] B, int n) { // Akan dipindahkan ke file GetMatriks.java
+        int i, j;
+        double doubleInput;
+        Scanner input = new Scanner(System.in);
+        for (i = 0; i < n; i++) {
+            A[0][i] = 1;
+            for (j = 1; j < n; j++) {
+                doubleInput = input.nextDouble();
+                A[j][i] = Math.pow(doubleInput,j);
+            }
+            B[i] = input.nextDouble();
+        }
+
+    }
 }
