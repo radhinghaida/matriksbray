@@ -44,7 +44,7 @@ public class GetMatriks {
     */
 
 
-    static void inputMatriks(double[][] A, double[] B, int m, int n) { // Akan dipindahkan ke file GetMatriks.java
+    static void inputMatriks(double[][] A, int m, int n) { // Akan dipindahkan ke file GetMatriks.java
         int i, j;
         Scanner input = new Scanner(System.in);
         for (j = 0; j < m; j++) {
@@ -53,7 +53,6 @@ public class GetMatriks {
             }
 
         }
-        inputRightSide(B, m);
     }
 
     static void inputRightSide(double[] B, int m) { // Akan dipindahkan ke file GetMatriks.java
