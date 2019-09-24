@@ -22,8 +22,9 @@ public class GaussEli {
         int[][] myNumbers = { {1, 2, 3}, {5, 6, 7} };
         int x = myNumbers[1][2]; A[x][y] = x col, y row
         Matrix x is 
-        1 2 3
-        5 6 7
+        1 5 
+        2 6
+        3 7
 
         A[k][0], k++, to access Row-1 elements
         A[0][k], k++,  to access Column-1 elements
@@ -146,6 +147,7 @@ public class GaussEli {
         boolean thereIsAllZero = false;
         boolean hasSolution = true;
         double[] solutionConst = new double[B.length];
+        double[] coefVar = new double[B.length];
         char[] variable = new char[B.length];
         char mark = '`';
         totalRow = A[0].length;
@@ -164,6 +166,7 @@ public class GaussEli {
         /* Isi array variable dengan mark, yaitu ` . Isi array solution dengan 0*/
         for (i = 0; i < totalRow; i++) {
             variable[i] = '`';
+            coefVar[i] = 0;
             solutionConst[i] = 0;
         }
 
@@ -194,14 +197,17 @@ public class GaussEli {
                     else {
                         solutionConst[i] = tempConstant;
                     }
+                    // Printing the constant frist 
                     System.out.print(df3.format(solutionConst[i]));
+
+                    // Printing the variable with the coef, but the coef is still fucked up
                     for (j = (A.length) - 1; j > i; j--) {
                         if (variable[j] != mark) {
-                            if (A[j][i] > 0) {
-                                System.out.print(" - " + df3.format(Math.abs(A[j][i])) + variable[j]);
+                            if (A[j][i] > 0) { // Nilai Elemen positif di matriks
+                                System.out.print(" - " + df3.format(  Math.abs(A[j][i])  ) + variable[j]);
                             }
-                            else {
-                                System.out.print(" + " + df3.format(Math.abs(A[j][i])) + variable[j]);
+                            else { // Nilai elemen negatif di matriks
+                                System.out.print(" + " + df3.format( Math.abs(A[j][i])  ) + variable[j]);
                             }
                         }
                     }
@@ -209,7 +215,6 @@ public class GaussEli {
                 } // End of Else
             }
         }
-
     } // End of solveSPL
 
 }
