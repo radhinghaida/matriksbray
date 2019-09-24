@@ -11,7 +11,7 @@ public class GetInverse {
         detM = myDet.cramerDeterminant(M);
         for (i = 0; i < M[0].length; i ++) {
             for (j = 0; j < M.length; j++) {
-                MI[j][i] = MA[j][i]*detM;
+                MI[j][i] = MA[j][i]*(1/detM);
             }
         }
     }
