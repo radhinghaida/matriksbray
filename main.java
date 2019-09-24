@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Menu {
+class main {
     public static void main(String[] args) {
         System.out.println("SELAMAT DATANG PARA INSAN YANG INGIN MENYELESAIKAN MATRIKS");
         System.out.println("--------------- MENU ---------------");
