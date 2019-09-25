@@ -36,7 +36,7 @@ public class GetDeterminant {
 
         }
 
-    } // End of cofDet
+    } // End of cramerDet
 
     static double gaussDeterminant(double[][] M) {
         int i, j, chosenCol;
@@ -66,7 +66,8 @@ public class GetDeterminant {
         GetDeterminant myDet = new GetDeterminant();
         double tempDet;
         double[][] MSwap = new double[M.length][M[0].length];
-        MSwap = myGauss.SwapCol(M, n, M.length);
+        MSwap = myGauss.CopyMatriks(M); 
+        myGauss.SwapCol(MSwap, n, M.length);
         tempDet = myDet.gaussDeterminant(MSwap);
         return tempDet;
 
