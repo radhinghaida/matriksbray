@@ -9,38 +9,32 @@ public class GetInverse {
         GetDeterminant myDet = new GetDeterminant();
         MA = myCofactor.makeAdjMatrix(M);
         detM = myDet.cofDeterminant(M);
-        for (i = 0; i < M[0].length; i ++) {
-            for (j = 0; j < M.length; j++) {
-                MI[j][i] = MA[j][i]*(1/detM);
+        for (i = 0; i < M.length; i ++) {
+            for (j = 0; j < M[0].length; j++) {
+                MI[i][j] = MA[i][j]*(1/detM);
             }
         }
     return MI;
     }
 
-    public static void GaussEliInverse(double[][] A, double[] B) 
+    public static void GaussEliInverse(double[][] A,double[][] MI) 
     {   // Matriks A (Koefisien), Matriks B (Hasil dari tiap persamaan)
         int i, j, k, steps, rowPivot;
         double divider, multiplier;
 
         int totalCol = A.length;
         int totalRow = A[0].length;
-
-        double[][] MI = new double[M.length][M[0].length]; // Menyimpan matriks Inverse hasil
         
-        // normally, i for column, j for row
-
-        /* 
-        int[][] myNumbers = { {1, 2, 3}, {5, 6, 7} };
-        int x = myNumbers[1][2]; A[x][y] = x col, y row
-        Matrix x is 
-        1 5 
-        2 6
-        3 7
-
-        A[k][0], k++, to access Row-1 elements
-        A[0][k], k++,  to access Column-1 elements
-        System.out.println(x); Outputs 7
-        */
+        for (i = 0; i < A.length; i++) {
+            for (j = 0; j < A[0].length; j++) {
+                if (i == j) {
+                    MI[i][j] = 1;
+                }
+                else {
+                    MI[i][j] = 0;
+                }
+            }
+        }
 
         steps = 1;
 
@@ -54,7 +48,7 @@ public class GetInverse {
                 if (isAllZero(A, j)) {
                     if (j + 1 < totalRow) {
                         SwapRowInverse(A, j, j+1);
-                        SwapElInverse(B, j, j+1);
+                        SwapRowInverse(MI, j, j+1);
                     }
                 }                
 
@@ -64,8 +58,8 @@ public class GetInverse {
                     if (divider != 0) {
                         for (i = 0; i < totalCol; i++) { // Supaya Row ke - 1 elemen pertamanya 1
                             A[i][j] = A[i][j] / divider;
+                            MI[i][j] = MI[i][j] / divider;
                         }
-                        B[j] = B[j] / divider;
                     }
                 }
             
@@ -76,8 +70,8 @@ public class GetInverse {
                     for (i = steps-1; i < totalCol; i++) 
                     {
                         A[i][j] = A[i][j] - (multiplier) * A[i][rowPivot];
+                        MI[i][j] = MI[i][j] - (multiplier) * MI[i][rowPivot];
                     }
-                    B[j] = B[j] - (multiplier) * B[rowPivot];
                 }
             } // End of For
             steps++;
@@ -86,13 +80,10 @@ public class GetInverse {
     
 
 
-    public static void InverseGaussJordan(double[][] A, double[] B) {
-        int i, j, k, steps, rowPivot;
-        double divider, multiplier;
-
-        int totalCol = A.length;
-        int totalRow = A[0].length;
-        GaussEliInverse(A,B);
+    public static double[][] InverseGaussJordan(double[][] A) {
+        double[][] MI = new double[A.length][A[0].length]; // Menyimpan matriks Inverse hasil
+        
+        GaussEliInverse(A, MI);
 
         steps = totalRow;
 
@@ -103,13 +94,13 @@ public class GetInverse {
                     if (A[rowPivot][j] != 0) {
                         multiplier = A[steps-1][j];
                         A[rowPivot][j] -= (multiplier);
-                        B[j] -= (multiplier) * B[rowPivot];
+                        MI[rowpivot][j] -= (multiplier);
                     }
                 }
             } // End of For
             steps--;
         } // End of While
-
+        return MI;
     }
 
 
