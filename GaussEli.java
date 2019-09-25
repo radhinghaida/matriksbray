@@ -74,67 +74,6 @@ public class GaussEli {
     } // End of GaussEli       
     
 
-    public static void GaussEliAug(double[][] A) 
-    {   // Matriks A (Koefisien), Matriks B (Hasil dari tiap persamaan)
-        int i, j, k, steps, rowPivot;
-        double divider, multiplier;
-
-        int totalCol = A.length;
-        int totalRow = A[0].length;
-        
-        // normally, i for column, j for row
-
-        /* 
-        int[][] myNumbers = { {1, 2, 3}, {5, 6, 7} };
-        int x = myNumbers[1][2]; A[x][y] = x col, y row
-        Matrix x is 
-        1 5 
-        2 6
-        3 7
-
-        A[k][0], k++, to access Row-1 elements
-        A[0][k], k++,  to access Column-1 elements
-        System.out.println(x); Outputs 7
-        */
-
-        steps = 1;
-
-        while (steps <= totalRow) 
-        {
-            rowPivot = steps-1; 
-
-            for (j = steps-1; j < totalRow; j++) 
-            {
-                // Checking if Row contains all zero or not
-                if (isAllZeroAug(A, j)) {
-                    if (j + 1 < totalRow) {
-                        SwapRow(A, j, j+1);
-                    }
-                }                
-
-                if ((j == rowPivot) && (A[j][j] != 1)) // Ketika Row pivot
-                {
-                    divider = A[j][j];
-                    if (divider != 0) {
-                        for (i = 0; i < totalCol; i++) { // Supaya Row ke - 1 elemen pertamanya 1
-                            A[i][j] = A[i][j] / divider;
-                        }
-                    }
-                }
-            
-
-                if ((j != rowPivot) && (A[steps-1][j] != 0)) // Ketika bukan Row Pivot
-                {
-                    multiplier = A[steps-1][j];
-                    for (i = steps-1; i < totalCol; i++) 
-                    {
-                        A[i][j] = A[i][j] - (multiplier) * A[i][rowPivot];
-                    }
-                }
-            } // End of For
-            steps++;
-        }
-    } // End of GaussEliAug      
 
     public static void GaussJordan(double[][] A, double[] B) {
         int i, j, k, steps, rowPivot;
@@ -158,34 +97,6 @@ public class GaussEli {
                 }
             } // End of For
             steps--;
-        } // End of While
-
-    }
-    public static void GaussJordanAug(double[][] A) {
-        int i, j, k, colPivot, rowPivot, stepsCol, stepsRow;
-        double divider, multiplier;
-
-        int totalCol = A.length;
-        int totalRow = A[0].length;
-        GaussEliAug(A);
-
-        stepsRow = totalRow;
-        stepsCol = totalCol;
-
-        while (stepsRow > 0) {
-            colPivot = stepsCol-2;
-            rowPivot = stepsRow-1;
-            for (j = rowPivot-1; j >= 0; j--) {
-                if (!(isAllZeroAug(A, j)) ) {
-                    if (A[colPivot][j] != 0) {
-                        multiplier = A[colPivot][j];
-                        A[colPivot][j] -= (multiplier);
-                        A[totalCol-1][j] -= (multiplier) * A[totalCol-1][rowPivot];
-                    }
-                }
-            } // End of For
-            stepsRow--;
-            stepsCol--;
         } // End of While
 
     }
@@ -229,18 +140,6 @@ public class GaussEli {
         }
         return allZero;
     } // End of isAllZero
-
-    static boolean isAllZeroAug(double[][] A, int row) {
-        int i, colLength;
-        colLength = A.length - 1;
-        boolean allZero = true;
-        for (i = 0; i < colLength; i++) {
-            if (A[i][row] != 0) {
-                allZero = false;
-            }
-        }
-        return allZero;
-    } // End of isAllZeroAug
 
     static void solveSPL(double[][] A, double[] B) { // Masih bermasalah kalo ada free variable
         int i, j, totalFreeVar, totalRow, initialASCII;
@@ -316,6 +215,19 @@ public class GaussEli {
                 } // End of Else
             }
         }
+
+    public static void cramerSPL(double[][] M){// input augmented matrix
+        GetDeterminant myCof = new GetDeterminant();
+        double[] valDet = new double[M.length-1]; // Cramer Determinant
+        double[] solusi = new double[M.length-1];
+        double tempDet; // Determinant of M
+        tempDet = myCof.gaussDeterminant(M;)
+        for(int i = 0; i<M.length-1; i++){
+            valDet[i] = myCof.cramerDeterminant(M,i);
+            solusi[i] = valDet[i]/tempDet;
+        }
+
+    }
     } // End of solveSPL
 
 }
