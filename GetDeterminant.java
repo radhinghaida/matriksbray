@@ -1,6 +1,6 @@
 public class GetDeterminant {
 
-    static double cramerDeterminant(double[][] M) {
+    static double cofDeterminant(double[][] M) {
         double[][] MP = new double[M.length-1][M[0].length - 1];
         double tempDet;
         int i, j, currentKol,currentBrs, chosenCol;
