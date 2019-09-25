@@ -1,8 +1,8 @@
 public class GetInverse {
 
     static double[][] adjoinInverse(double[][]M) {
-        double[][] MA = new double[M.length][M[0].Length]; // Menyimpan matriks Adjoin
-        double[][] MI = new double[M.length][M[0].Length]; // Menyimpan matriks Inverse hasil
+        double[][] MA = new double[M.length][M[0].length]; // Menyimpan matriks Adjoin
+        double[][] MI = new double[M.length][M[0].length]; // Menyimpan matriks Inverse hasil
         double detM; // Menyimpan hasil determinan matriks M
         int i, j;
         GetCofactor myCofactor = new GetCofactor();
@@ -14,7 +14,7 @@ public class GetInverse {
                 MI[j][i] = MA[j][i]*(1/detM);
             }
         }
-    }
     return MI;
+    }
 
 }
