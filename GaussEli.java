@@ -78,7 +78,6 @@ public class GaussEli {
     public static void GaussJordan(double[][] A, double[] B) {
         int i, j, k, steps, rowPivot;
         double divider, multiplier;
-
         int totalCol = A.length;
         int totalRow = A[0].length;
         GaussEli(A,B);
@@ -101,7 +100,15 @@ public class GaussEli {
 
     }
 
-
+    static double[][] CopyMatriks(double[][] M){
+        double[][] MCopy = new double[M.length][M[0].length];
+        for(int j=0;j<M[0].length;j++){
+            for(int i=0;i<M.length;i++){
+                MCopy[i][j] = M[i][j];
+            }
+        }
+        return MCopy;
+    }
 
     static void SwapRow(double[][] A, int row1, int row2) {
         int i, colLength;
@@ -216,18 +223,24 @@ public class GaussEli {
             }
         }
 
-    public static void cramerSPL(double[][] M){// input augmented matrix
-        GetDeterminant myCof = new GetDeterminant();
+    } // End of solveSPL
+    static double[] cramerSPL(double[][] M){// input augmented matrix
+        GetDeterminant myDet = new GetDeterminant();
+        double[][] MSmall = new double[M.length-1][M[0].length];
         double[] valDet = new double[M.length-1]; // Cramer Determinant
         double[] solusi = new double[M.length-1];
         double tempDet; // Determinant of M
-        tempDet = myCof.gaussDeterminant(M;)
+        for(int j=0;j<M[0].length;j++){
+            for(int i=0;i<M.length-1;i++){
+                MSmall[i][j] = M[i][j];
+            }
+        }
+        tempDet = myDet.gaussDeterminant(MSmall);
         for(int i = 0; i<M.length-1; i++){
             valDet[i] = myCof.cramerDeterminant(M,i);
             solusi[i] = valDet[i]/tempDet;
         }
-
+        return solusi;
     }
-    } // End of solveSPL
 
 }
