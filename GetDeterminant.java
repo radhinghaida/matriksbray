@@ -29,14 +29,14 @@ public class GetDeterminant {
                     }
                 } 
                             
-                tempDet += (M[chosenCol][0] * cramerDeterminant(MP)) * Math.pow(-1,1+chosenCol);
+                tempDet += (M[chosenCol][0] * cofDeterminant(MP)) * Math.pow(-1,1+chosenCol);
                 chosenCol += 1;
             }
             return tempDet;
 
         }
 
-    } // End of cramerDet
+    } // End of cofDet
 
     static double gaussDeterminant(double[][] M) {
         int i, j, chosenCol;
@@ -61,5 +61,15 @@ public class GetDeterminant {
         return Math.round(tempDet);
     } // End of gaussDet
     
+    static double cramerDeterminant(double[][] M, int n){// nilai n menunjukkan variable ke-n
+        GaussEli myGauss = new GaussEli();
+        GetDeterminant myDet = new GetDeterminant();
+        double tempDet;
+        double[][] MSwap = new double[M.length][M[0].length];
+        MSwap = myGauss.SwapCol(M, n, M.length);
+        tempDet = myDet.gaussDeterminant(MSwap);
+        return tempDet;
+
+    }
 
 }
