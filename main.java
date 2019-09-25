@@ -2,6 +2,11 @@ import java.util.Scanner;
 
 class main {
     public static void main(String[] args) {
+
+        GetMatriks currentMatriks = new GetMatriks();
+        Output result = new Output();
+        Scanner input = new Scanner(System.in);
+
         System.out.println("SELAMAT DATANG PARA INSAN YANG INGIN MENYELESAIKAN MATRIKS");
         System.out.println("--------------- MENU ---------------");
         System.out.println("");
@@ -35,11 +40,22 @@ class main {
             case 5:
                 break;
             case 6:
+            
+                // Interpolasi
+                Interpolasi getInter = new Interpolasi();
+                int jumlahInterpolasi;
+                jumlahInterpolasi = input.nextInt();
+                double[][] persamaanInter = new double[n][n];
+                double[] hasilInter = new doube[n];
+                currentMatriks.inputMatriksInterpolasi(persamaanInter, hasilInter, n);
+                getInter.solveInterpolasi(persamaanInter, hasilInter);
+                getInter.approx(persamaanInter, hasilInter);
+
                 break;
             case 7:
                 break;
             default:
-                System.out.println("Menu yang anda pilih tidak sesuai!");
+                System.out.println("Menu yang anda pilih tidak sesuai bray!");
         }  
     }
 }
