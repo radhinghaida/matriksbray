@@ -1,18 +1,18 @@
  public class GetCofactor{
 
-    public static double[][] makeEntryMatrix(double[][] M, int a, int b){ // a and b are the selected index
+    public static double[][] makeEntryMatrix(double[][] M, int a, int b){ // a is for column and b is for column
         double[][] ME = new double[M.length-1][M[0].length-1];
         int k=0, l=0;
-        for(int i = 0; i < M.length; i++){
-            for(int j = 0; j<M[0].length; j++){
-                if((i == a-1) || (j == b-1)){ //a-1 and b-1 untuk menyelaraskan row column non program
+        for(int j = 0; j < M.length; j++){ // j for row
+            for(int i = 0; i<M[0].length; i++){// i for column
+                if((i == a) || (j == b)){
                     continue; // Skip the selected index
                 }else{
-                    ME[k][l] = M[i][j];
+                    ME[l][k] = M[i][j];
                     l++;
                 }
             }
-            if(i != a-1){ //a-1 and b-1 untuk menyelaraskan row column non program
+            if(i != a){ 
                 k++;
             }
         }
@@ -22,9 +22,9 @@
     static double[][] makeCofMatrix(double[][] M){
         double[][] MCof = new double[M.length][M[0].length];
         GetDeterminant myDet = new GetDeterminant();
-        for(int i = 0; i < M.length; i++){
-            for(int j = 0; j<M[0].length; j++){
-                MCof[i][j] = myDet.gaussDeterminant(makeEntryMatrix(M,i+1,j+1));
+        for(int j = 0; j < M.length; j++){
+            for(int i = 0; i<M[0].length; i++){
+                MCof[i][j] = myDet.gaussDeterminant(makeEntryMatrix(M,i,j));
             }
         }
         return MCof;
@@ -33,8 +33,8 @@
     static double[][] makeAdjMatrix(double[][] M){
         double[][] AdjM = new double[M.length][M[0].length];
         double temp;
-        for (int i = 0; i < M.length; i++) {
-            for (int j = i; j < M[0].length; j++) {
+        for (int j = 0; j < M.length; j++) {
+            for (int i = j; i < M[0].length; i++) {
                 temp = M[i][j];
                 M[i][j] = M[j][i];
                 M[j][i] = temp;
