@@ -34,9 +34,9 @@ public class GetCofactor{
         double[][] AdjM = new double[M.length][M[0].length];
         double temp;
         AdjM = makeCofMatrix(M);
-        for (int j = 0; i < M[0].length; i++)
+        for (int j = 0; j < M[0].length; j++)
         {
-            for (int i = 0; i < j; j++)
+            for (int i = 0; i < j; i++)
             {
                 temp = AdjM[i][j];
                 AdjM[i][j] = AdjM[j][i];
