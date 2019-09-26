@@ -222,7 +222,36 @@ class main {
                 }
                 break;
             case 5:
-                
+                GetCofactor myCof = new GetCofactor();
+                int pilihMenu, pilihInput;
+                System.out.println("1. Buat Matriks Adjoin");
+                Scanner cof = new Scanner(System.in);
+                pilihMenu = cof.nextInt();
+                System.out.println("1. Input Matriks");
+                System.out.println("2. Read Matriks dari File");
+                pilihInput = cof.nextInt();
+                switch (pilihMenu){
+                    case 1:
+                        if(pilihInput == 1){
+                            int n;
+                            char answer;
+                            System.out.print("Masukkan N (Matriks N x N) : ");
+                            n = cof.nextInt();
+                            double[][] MInput = new double[n][n];
+                            double[][] MAdj = new double[n][n];
+                            currentMatriks.inputMatriks(MInput, n, n);
+                            MAdj = myCof.makeCofMatrix(MInput);
+                            System.out.println("Matriks adjoinnya adalah : ");
+                            result.printMatrix(MAdj);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = cof.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MCof);
+                            }
+                        }else{
+
+                        }    
+                        break;
                 break;
             case 6:
 
