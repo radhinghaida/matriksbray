@@ -29,7 +29,7 @@ public class GetDeterminant {
                     }
                 } 
                             
-                tempDet += (M[chosenCol][0] * cofDeterminant(MP)) * Math.pow(-1,1+chosenCol);
+                tempDet += (M[chosenCol][0] * cofDeterminant(MP)) * Math.pow(-1,chosenCol);
                 chosenCol += 1;
             }
             return tempDet;
