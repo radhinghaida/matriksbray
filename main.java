@@ -315,13 +315,17 @@ class main {
                     case 2:
                         if(pilihInput == 1){
                             int n;
+                            int col,row;
                             char answer;
                             System.out.print("Masukkan N (Matriks N x N) : ");
                             n = cof.nextInt();
                             double[][] MInput = new double[n][n];
                             double[][] MEntry = new double[n-1][n-1];
                             currentMatriks.inputMatriks(MInput, n, n);
-                            MEntry = myCof.makeEntryMatrix(MInput);
+                            System.out.print("Masukkan baris dan kolom yang ingin dihilangkan :");
+                            col = cof.nextInt();
+                            row = cof.nextInt();
+                            MEntry = myCof.makeEntryMatrix(MInput, col, row);
                             System.out.println("Matriks Entry-nya adalah : ");
                             result.printMatrix(MEntry);
                             System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
@@ -338,8 +342,11 @@ class main {
                             double[][] MInput = new double[jmlkol][jmlbrs];
                             MInput = load.LoadMatriks(jmlkol, jmlbrs);
                             double[][] MEntry = new double[jmlkol-1][jmlbrs-1];
-                            MEntry = myCof.makeEntryMatrix(MInput);
-                            System.out.println("Matriks Kofaktornya adalah : ");
+                            System.out.print("Masukkan baris dan kolom yang ingin dihilangkan :");
+                            col = cof.nextInt();
+                            row = cof.nextInt();
+                            MEntry = myCof.makeEntryMatrix(MInput, col, row);
+                            System.out.println("Matriks Entry-nya adalah : ");
                             result.printMatrix(MEntry);
                             System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
                             answer = pilih.next().charAt(0);
