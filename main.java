@@ -5,6 +5,7 @@ class main {
 
         int sourceType;
         GetMatriks currentMatriks = new GetMatriks();
+        LoadFile load = new LoadFile();
         Output result = new Output();
         Scanner input = new Scanner(System.in);
 
@@ -184,6 +185,84 @@ class main {
 
                 break;
             case 3:
+                GetInverse inv = new GetInverse();
+                int menu, input;
+                System.out.println("1. Buat Invers dengan cara Adjoin");
+                System.out.println("2. Buat Invers dengan cara Gauss Jordan");
+                System.out.println("Pilih mana nih temanku ?");
+                Scanner pilih = new Scanner(System.in);
+                pilihmenu = pilih.nextInt();
+                System.out.println("1. Input Matriks");
+                System.out.println("2. Read Matriks dari File");
+                pilihinput = pilih.nextInt();
+                switch(pilihmenu) {
+                    case 1:
+                        if (pilihinput == 1) {
+                            int n;
+                            System.out.print("Masukkan N (Matriks N x N) : ");
+                            n = cof.nextInt();
+                            double[][] MInput = new double[n][n];
+                            double[][] MInverse = new double[n][n];
+                            currentMatriks.inputMatriks(MInput, n, n);
+                            MInverse = inv.adjoinInverse(MInput);
+                            System.out.println("Matriks Inversenya adalah : ");
+                            result.printMatrix(MInverse);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = pilih.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MInverse);
+                            }
+                        }
+                        else if (pilihinput == 2) {
+                            int jmlkol, jmlbrs;
+                            jmlkol = 0; jmlbrs = 0;
+                            load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MInput = new double[jmlkol][jmlbrs];
+                            MInput = load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MInverse = new double[n][n];
+                            MInverse = inv.adjoinInverse(MInput);
+                            System.out.println("Matriks Inversenya adalah : ");
+                            result.printMatrix(MInverse);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = pilih.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MInverse);
+                            }         
+                        }
+                    case 2:
+                        if (pilihinput == 1) {
+                            int n;
+                            System.out.print("Masukkan N (Matriks N x N) : ");
+                            n = cof.nextInt();
+                            double[][] MInput = new double[n][n];
+                            double[][] MInverse = new double[n][n];
+                            currentMatriks.inputMatriks(MInput, n, n);
+                            MInverse = inv.InverseGaussJordan(MInput);
+                            System.out.println("Matriks Inversenya adalah : ");
+                            result.printMatrix(MInverse);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = pilih.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MInverse);
+                            }
+                        }
+                        else if (pilihinput == 2) {
+                            int jmlkol, jmlbrs;
+                            jmlkol = 0; jmlbrs = 0;
+                            load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MInput = new double[jmlkol][jmlbrs];
+                            MInput = load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MInverse = new double[jmlkol][jmlbrs];
+                            MInverse = inv.InverseGaussJordan(MInput);
+                            System.out.println("Matriks Inversenya adalah : ");
+                            result.printMatrix(MInverse);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = pilih.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MInverse);
+                            }
+                        }
+                }
                 break;
             case 4: // Kofaktor
                 GetCofactor myCof = new GetCofactor();
@@ -217,7 +296,20 @@ class main {
 
 
                         }else{
-                            // nunggu radhin
+                            int jmlkol, jmlbrs;
+                            jmlkol = 0; jmlbrs = 0;
+                            load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MInput = new double[jmlkol][jmlbrs];
+                            MInput = load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MCof = new double[jmlkol][jmlbrs];
+                            MCof = myCof.makeCofMatrix(MInput);
+                            System.out.println("Matriks Kofaktornya adalah : ");
+                            result.printMatrix(MCof);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = pilih.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MCof);
+                            }
                         }
                         break;
                     case 2:
@@ -240,7 +332,20 @@ class main {
 
 
                         }else{
-                            // nunggu radhin
+                            int jmlkol, jmlbrs;
+                            jmlkol = 0; jmlbrs = 0;
+                            load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MInput = new double[jmlkol][jmlbrs];
+                            MInput = load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MEntry = new double[jmlkol-1][jmlbrs-1];
+                            MEntry = myCof.makeEntryMatrix(MInput);
+                            System.out.println("Matriks Kofaktornya adalah : ");
+                            result.printMatrix(MEntry);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = pilih.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MEntry);
+                            }
                         }
                         break;
                 }
@@ -264,7 +369,7 @@ class main {
                             double[][] MInput = new double[n][n];
                             double[][] MAdj = new double[n][n];
                             currentMatriks.inputMatriks(MInput, n, n);
-                            MAdj = myCof.makeCofMatrix(MInput);
+                            MAdj = myCof.makeAdjMatrix(MInput);
                             System.out.println("Matriks adjoinnya adalah : ");
                             result.printMatrix(MAdj);
                             System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
@@ -273,7 +378,20 @@ class main {
                                 result.SaveMatriksIntoFile(MCof);
                             }
                         }else{
-
+                            int jmlkol, jmlbrs;
+                            jmlkol = 0; jmlbrs = 0;
+                            load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MInput = new double[jmlkol][jmlbrs];
+                            MInput = load.LoadMatriks(jmlkol, jmlbrs);
+                            double[][] MAdj = new double[jmlkol][jmlbrs];
+                            MAdj myCof.makeAdjMatrix(MInput);
+                            System.out.println("Matriks Kofaktornya adalah : ");
+                            result.printMatrix(MAdj);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = pilih.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MAdj);
+                            }
                         }    
                         break;
                 break;
@@ -310,5 +428,4 @@ class main {
                 }
     }
 }
-
         
