@@ -237,7 +237,7 @@ public class GaussEli {
         }
         tempDet = myDet.gaussDeterminant(MSmall);
         for(int i = 0; i<M.length-1; i++){
-            valDet[i] = myDet.cramerDeterminant(MSmall,i);
+            valDet[i] = myDet.cramerDeterminant(M,i);
             solusi[i] = valDet[i]/tempDet;
         }
         return solusi;
