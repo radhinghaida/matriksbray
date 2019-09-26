@@ -66,18 +66,16 @@ public class GetDeterminant {
         GetDeterminant myDet = new GetDeterminant();
         double tempDet;
         double[][] MSwap = new double[M.length][M[0].length];
-        double[][] MCoef = new double[M.length-1][M[0].length-1]; 
+        double[][] MCoef = new double[M.length-1][M[0].length]; 
         MSwap = myGauss.CopyMatriks(M); 
-        myGauss.SwapCol(MSwap, n, M.length);
+        myGauss.SwapCol(MSwap, n, M.length-1);
         for(int j=0;j<M[0].length;j++){
             for(int i=0;i<M.length-1;i++){
-                MCoef[i][j] = M[i][j];
+                MCoef[i][j] = MSwap[i][j];
             }
         }
         tempDet = myDet.gaussDeterminant(MCoef);
         return tempDet;
-
-    }
 
     }
 
