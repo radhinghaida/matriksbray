@@ -42,7 +42,7 @@ public class GetCofactor{
         AdjM = makeCofMatrix(M);
         for (int j = 0; j < M[0].length; j++)
         {
-            for (int i = 0; i < j; j++)
+            for (int i = 0; i < j; i++)
             {
                 temp = AdjM[i][j];
                 AdjM[i][j] = AdjM[j][i];
