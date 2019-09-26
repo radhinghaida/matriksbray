@@ -43,6 +43,7 @@ class main {
                     case 1:
                         if (sourceType == 1) {
                             int m, n;
+                            char answer;
                             System.out.print("Masukkan jumlah baris : ");
                             n = spl.nextInt();
                             System.out.print("Masukan jumlah kolom : ");
@@ -51,9 +52,20 @@ class main {
                             double[] rightSide = new double[n];
                             currentMatriks.inputMatriks(matriksSPL, m, n);
                             currentMatriks.inputRightSide(rightSide, n);
-                            doGauss.GaussEli(matriksSPL, rightSide);
-                            System.out.println("Matriks setelah Gauss-elimination = ");
-                            result.printMatrix(matriksSPL);
+                            System.out.println("Apakah hasil akan disimpan (y/n) ?");
+                            answer = pilih.next().charAt(0);
+                            if (answer == 'y') {
+                                doGauss.GaussEli(matriksSPL, rightSide);
+                                System.out.println("Matriks setelah Gauss-elimination = ");
+                                result.printMatrix(matriksSPL);
+                                result.solveSPLSave(matriksSPL, rightSide);
+                            }
+                            else {
+                                doGauss.GaussEli(matriksSPL, rightSide);
+                                System.out.println("Matriks setelah Gauss-elimination = ");
+                                result.printMatrix(matriksSPL);
+                                doGauss.solveSPL(matriksSPL, rightSide);
+                            }
 
                         }
                         break;
@@ -61,17 +73,29 @@ class main {
                     case 2:
                     if (sourceType == 1) {
                         int m, n;
-                        System.out.print("Masukkan jumlah baris : ");
-                        n = spl.nextInt();
-                        System.out.print("Masukan jumlah kolom : ");
-                        m = spl.nextInt();
-                        double[][] matriksSPL = new double[m][n];
-                        double[] rightSide = new double[n];
-                        currentMatriks.inputMatriks(matriksSPL, m, n);
-                        currentMatriks.inputRightSide(rightSide, n);
-                        doGauss.GaussJordan(matriksSPL, rightSide);
-                        System.out.println("Matriks setelah Gauss-Jordan = ");
-                        result.printMatrix(matriksSPL);
+                            char answer;
+                            System.out.print("Masukkan jumlah baris : ");
+                            n = spl.nextInt();
+                            System.out.print("Masukan jumlah kolom : ");
+                            m = spl.nextInt();
+                            double[][] matriksSPL = new double[m][n];
+                            double[] rightSide = new double[n];
+                            currentMatriks.inputMatriks(matriksSPL, m, n);
+                            currentMatriks.inputRightSide(rightSide, n);
+                            System.out.println("Apakah hasil akan disimpan (y/n) ?");
+                            answer = pilih.next().charAt(0);
+                            if (answer == 'y') {
+                                doGauss.GaussJordan(matriksSPL, rightSide);
+                                System.out.println("Matriks setelah Gauss-Jordan = ");
+                                result.printMatrix(matriksSPL);
+                                result.solveSPLSave(matriksSPL, rightSide);
+                            }
+                            else {
+                                doGauss.GaussJordan(matriksSPL, rightSide);
+                                System.out.println("Matriks setelah Gauss-Jordan = ");
+                                result.printMatrix(matriksSPL);
+                                doGauss.solveSPL(matriksSPL, rightSide);
+                            }
 
                     }
                         break;
@@ -282,6 +306,9 @@ class main {
                 break;
             default:
                 System.out.println("Menu yang anda pilih tidak sesuai bray!");
-        }  
+                    }
+                }
     }
 }
+
+        
