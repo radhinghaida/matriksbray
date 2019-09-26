@@ -32,8 +32,6 @@ class main {
                 GaussEli doGauss = new GaussEli();
                 System.out.println("1. Metode eliminasi gauss");
                 System.out.println("2. Metode eliminasi gauss jordan");
-                System.out.println("3. Metode matriks balikan");
-                System.out.println("4. Kaidah cramer");
                 System.out.print("Mau diapain nih SPLnya? ");
                 int pilihspl = spl.nextInt();
                 System.out.println("Matriksnya mau darimana gan ?");
@@ -101,13 +99,6 @@ class main {
                     }
                         break;
 
-                    case 3:
-
-                        break;
-
-                    case 4:
-
-                        break;
 
                 }
 
@@ -435,4 +426,3 @@ class main {
                 }
     }
 }
-        
