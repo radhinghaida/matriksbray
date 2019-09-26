@@ -1,4 +1,4 @@
- public class GetCofactor{
+public class GetCofactor{
 
     public static double[][] makeEntryMatrix(double[][] M, int a, int b){ // a is for column and b is for column
         double[][] ME = new double[M.length-1][M[0].length-1];
@@ -30,16 +30,19 @@
         return MCof;
     }
 
-    static double[][] makeAdjMatrix(double[][] M){
+    static double[][] makeAdjMatrix(double[][] M){//input square matrix
         double[][] AdjM = new double[M.length][M[0].length];
         double temp;
-        for (int j = 0; j < M[0].length; j++) {
-            for (int i = j; i < M.length; i++) {
-                temp = M[i][j];
-                M[i][j] = M[j][i];
-                M[j][i] = temp;
+        AdjM = makeCofMatrix(M);
+        for (int j = 0; i < M[0].length; i++)
+        {
+            for (int i = 0; i < j; j++)
+            {
+                temp = AdjM[i][j];
+                AdjM[i][j] = AdjM[j][i];
+                AdjM[j][i] = temp;
             }
         }
         return AdjM;
     }
-}    
+}        
