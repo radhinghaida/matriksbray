@@ -3,6 +3,7 @@ import java.util.Scanner;
 class main {
     public static void main(String[] args) {
 
+        int sourceType;
         GetMatriks currentMatriks = new GetMatriks();
         Output result = new Output();
         Scanner input = new Scanner(System.in);
@@ -20,21 +21,22 @@ class main {
         System.out.println("\n Silahkan pilih menu yang diinginkan!");
         Scanner pilih = new Scanner(System.in);
         int pilihmenu = pilih.nextInt();
+        Scanner spl = new Scanner(System.in);
         System.out.println("\n");
         switch (pilihmenu) {
+            
             case 1:
-                GaussEli doGauss = new GaussEli;
+                GaussEli doGauss = new GaussEli();
                 System.out.println("1. Metode eliminasi gauss");
                 System.out.println("2. Metode eliminasi gauss jordan");
                 System.out.println("3. Metode matriks balikan");
                 System.out.println("4. Kaidah cramer");
                 System.out.print("Mau diapain nih SPLnya? ");
-                Scanner spl = new Scanner(System.in);
                 int pilihspl = spl.nextInt();
                 System.out.println("Matriksnya mau darimana gan ?");
                 System.out.println("1. Input Matriks");
                 System.out.println("2. Baca dari File");
-                int sourceType = spl.nextInt();
+                sourceType = spl.nextInt();
                 switch (pilihspl) {
                     case 1:
                         if (sourceType == 1) {
@@ -86,7 +88,7 @@ class main {
 
                 
             case 2: // Determinan
-                GetDeterminant findDet = new Determinant();
+                GetDeterminant findDet = new GetDeterminant();
                 System.out.println("1. Metode eliminasi gauss");
                 System.out.println("2. Metode Kofaktor");
                 System.out.println("3. Metode Cramer");
@@ -96,7 +98,7 @@ class main {
                 System.out.println("Matriksnya mau darimana gan ?");
                 System.out.println("1. Input Matriks");
                 System.out.println("2. Baca dari File");
-                int sourceType = det.nextInt();
+                sourceType = det.nextInt();
 
                 switch (pilihdet) {
 
@@ -169,11 +171,14 @@ class main {
             case 6:
 
                 // Interpolasi
+                int n;
                 Interpolasi getInter = new Interpolasi();
                 int jumlahInterpolasi;
+                Scanner inputInter = new Scanner(System.in);
+                n = inputInter.nextInt();
                 jumlahInterpolasi = input.nextInt();
                 double[][] persamaanInter = new double[n][n];
-                double[] hasilInter = new doube[n];
+                double[] hasilInter = new double[n];
                 currentMatriks.inputMatriksInterpolasi(persamaanInter, hasilInter, n);
                 getInter.solveInterpolasi(persamaanInter, hasilInter);
                 getInter.approx(persamaanInter, hasilInter);
