@@ -26,7 +26,11 @@ public class GetCofactor{
         GetDeterminant myDet = new GetDeterminant();
         for(int j = 0; j < M[0].length; j++){
             for(int i = 0; i<M.length; i++){
-                MCof[i][j] = myDet.gaussDeterminant(makeEntryMatrix(M,i,j));
+                if ((i+j)%2 == 0){
+                    MCof[i][j] = myDet.gaussDeterminant(makeEntryMatrix(M,i,j));
+                }else{
+                    MCof[i][j] = (-1)*myDet.gaussDeterminant(makeEntryMatrix(M,i,j));
+                }
             }
         }
         return MCof;
