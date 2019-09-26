@@ -9,7 +9,7 @@ class main {
         Scanner input = new Scanner(System.in);
 
         System.out.println("SELAMAT DATANG PARA INSAN YANG INGIN MENYELESAIKAN MATRIKS");
-        System.out.println("--------------- MENU ---------------");
+        System.out.println("        --------------- MENU ---------------");
         System.out.println("");
         System.out.println("1. Sistem Persamaan Linier");
         System.out.println("2. Determinan");
@@ -93,7 +93,6 @@ class main {
                 GetDeterminant findDet = new GetDeterminant();
                 System.out.println("1. Metode eliminasi gauss");
                 System.out.println("2. Metode Kofaktor");
-                System.out.println("3. Metode Cramer");
                 System.out.print("Mau nyari determinan pake apa bray ? ");
                 Scanner det = new Scanner(System.in);
                 int pilihdet = det.nextInt();
@@ -157,18 +156,73 @@ class main {
 
                         break;
 
-                    case 3:
-
-                        break;
-
                 }
 
                 break;
             case 3:
                 break;
-            case 4:
+            case 4: // Kofaktor
+                GetCofactor myCof = new GetCofactor();
+                int pilihMenu, pilihInput;
+                System.out.println("1. Buat Matriks Kofaktor");
+                System.out.println("2. Buat Matriks Entry");
+                System.out.println("Mangga dipilih");
+                Scanner cof = new Scanner(System.in);
+                pilihMenu = cof.nextInt();
+                System.out.println("1. Input Matriks");
+                System.out.println("2. Read Matriks dari File");
+                pilihInput = cof.nextInt();
+                switch (pilihMenu){
+                    case 1:
+                        if(pilihInput == 1){
+                            int n;
+                            char answer;
+                            System.out.print("Masukkan N (Matriks N x N) : ");
+                            n = cof.nextInt();
+                            double[][] MInput = new double[n][n];
+                            double[][] MCof = new double[n][n];
+                            currentMatriks.inputMatriks(MInput, n, n);
+                            MCof = myCof.makeCofMatrix(MInput);
+                            System.out.println("Matriks kofaktornya adalah : ");
+                            result.printMatrix(MCof);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = cof.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MCof);
+                            }
+
+
+                        }else{
+                            // nunggu radhin
+                        }
+                        break;
+                    case 2:
+                        if(pilihInput == 1){
+                            int n;
+                            char answer;
+                            System.out.print("Masukkan N (Matriks N x N) : ");
+                            n = cof.nextInt();
+                            double[][] MInput = new double[n][n];
+                            double[][] MEntry = new double[n-1][n-1];
+                            currentMatriks.inputMatriks(MInput, n, n);
+                            MEntry = myCof.makeEntryMatrix(MInput);
+                            System.out.println("Matriks Entry-nya adalah : ");
+                            result.printMatrix(MEntry);
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = cof.next().charAt(0);
+                            if(answer == 'y'){
+                                result.SaveMatriksIntoFile(MEntry);
+                            }
+
+
+                        }else{
+                            // nunggu radhin
+                        }
+                        break;
+                }
                 break;
             case 5:
+                
                 break;
             case 6:
 
