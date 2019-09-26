@@ -177,6 +177,7 @@ public class Output {
 
         if (!(hasSolution)) {
             System.out.println("Tidak ada solusi");
+            out.append("Tidak ada solusi");
         }
         else {
             for (i = (A[0].length) - 1; i >= 0; i--) {
