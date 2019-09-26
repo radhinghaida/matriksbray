@@ -242,6 +242,5 @@ public class GaussEli {
         }
         return solusi;
     }
-    }
 
 }
