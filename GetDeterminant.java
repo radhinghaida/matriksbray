@@ -61,15 +61,23 @@ public class GetDeterminant {
         return Math.round(tempDet);
     } // End of gaussDet
     
-    static double cramerDeterminant(double[][] M, int n){// nilai n menunjukkan variable ke-n
+    static double cramerDeterminant(double[][] M, int n){// nilai n menunjukkan variable ke-n, dan input augmented matrix
         GaussEli myGauss = new GaussEli();
         GetDeterminant myDet = new GetDeterminant();
         double tempDet;
         double[][] MSwap = new double[M.length][M[0].length];
+        double[][] MCoef = new double[M.length-1][M[0].length-1]; 
         MSwap = myGauss.CopyMatriks(M); 
         myGauss.SwapCol(MSwap, n, M.length);
-        tempDet = myDet.gaussDeterminant(MSwap);
+        for(int j=0;j<M[0].length;j++){
+            for(int i=0;i<M.length-1;i++){
+                MCoef[i][j] = M[i][j];
+            }
+        }
+        tempDet = myDet.gaussDeterminant(MCoef);
         return tempDet;
+
+    }
 
     }
 
