@@ -19,6 +19,8 @@ class main {
         System.out.println("6. Interpolasi");
         System.out.println("7. Keluar");
         System.out.println("\n Silahkan pilih menu yang diinginkan!");
+
+
         Scanner pilih = new Scanner(System.in);
         int pilihmenu = pilih.nextInt();
         Scanner spl = new Scanner(System.in);
@@ -170,7 +172,7 @@ class main {
                 break;
             case 6:
 
-                // Interpolasi
+                // Interpolasi, didalam method2nya sudah ada tawaran untuk safe file
                 int n;
                 Interpolasi getInter = new Interpolasi();
                 int jumlahInterpolasi;
@@ -182,9 +184,18 @@ class main {
                 currentMatriks.inputMatriksInterpolasi(persamaanInter, hasilInter, n);
                 getInter.solveInterpolasi(persamaanInter, hasilInter);
                 getInter.approx(persamaanInter, hasilInter);
-
                 break;
             case 7:
+
+                break; // Yeah, just like this
+
+            case 9999:
+                System.out.println("Cheat Activated!");
+                System.out.println("Follow IG Kami : ");
+                System.out.println("Bagas - @bagas.setyo");
+                System.out.println("Radhin - @radhinghaida");
+                System.out.println("Rafi - @rafi.adyatma");
+                System.out.println("");
                 break;
             default:
                 System.out.println("Menu yang anda pilih tidak sesuai bray!");
