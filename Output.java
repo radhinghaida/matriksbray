@@ -131,20 +131,24 @@ public class Output {
         double tempConstant, tempCoef;
         boolean thereIsAllZero = false;
         boolean hasSolution = true;
+        String fileName;
         double[] solutionConst = new double[B.length];
         double[][] coefVar = new double[B.length][B.length]; // Col buat Partical Solution, row isinya coef dari masing2 parameter (s,t,...)
         char[] variable = new char[B.length];
         char mark = '`';
 
+        GaussEli gaussNoSave = new GaussEli();
+
         Scanner inputFileName = new Scanner(System.in);
         System.out.print("Masukkan nama file : ");
         fileName = inputFileName.nextLine();
         File myFile = new File(fileName + ".txt");
-        PrintWriter out = new PrintWriter(new FileWriter(myFile, true));
+        try {
+            PrintWriter out = new PrintWriter(new FileWriter(myFile, true));
 
         totalRow = A[0].length;
         for (i = 0; i < A[0].length; i++) {
-            if (isAllZero(A, i)) {
+            if (gaussNoSave.isAllZero(A, i)) {
                 thereIsAllZero = true;
                 if (B[i] != 0) {
                     hasSolution = false;
@@ -176,7 +180,7 @@ public class Output {
         }
         else {
             for (i = (A[0].length) - 1; i >= 0; i--) {
-                if (isAllZero(A, i)) {
+                if (gaussNoSave.isAllZero(A, i)) {
                     totalFreeVar += 1;
                     variable[i] = Character.toUpperCase((char)initialASCII);
                     initialASCII += 1;
@@ -234,10 +238,13 @@ public class Output {
 
                             }
                     System.out.println("");
-                } // End of Else
-            }
+                    } // End of Else
+                }
+            } // End of Else (has Solution)
+            out.close();
+        } catch (Exception e) {
+            System.out.println("Error bray");
         }
-        out.close();
     } // End of solveSPL
 
 
