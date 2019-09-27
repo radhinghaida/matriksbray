@@ -10,14 +10,17 @@ public class LoadFile {
   public static double[][] LoadMatriks(int kolom, int row) throws IOException {
 
     double d;
+    String fileName;
     int countCol, countRow,i,j,x,y,a, countIsi;
 
     countCol = 0;
     countRow = 0;
     countIsi = 0;
 
+    Scanner getFileName = new Scanner(System.in);
+    fileName = getFileName.nextLine();
 
-     FileReader fin = new FileReader("tes.txt");
+    FileReader fin = new FileReader(fileName + ".txt");
     Scanner src = new Scanner(fin);
     try {
     while (src.hasNext()) {
@@ -36,7 +39,7 @@ public class LoadFile {
         System.out.println("READ PERTAMA GAGAL BRAY");
     }
 
-    FileReader finRow = new FileReader("tes.txt");
+    FileReader finRow = new FileReader(fileName + ".txt");
     Scanner srcRow = new Scanner(finRow);
     try {
     while (srcRow.hasNextLine()) {
