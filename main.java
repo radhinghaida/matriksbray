@@ -185,6 +185,25 @@ class main {
                             result.printHasilPersamaan(doGauss.cramerSPL(matriksSPL));
                         }
 
+                    }else{
+                        int jmlkol=0, jmlbrs=0;
+                        char answer;
+                        load.LoadMatriks(jmlkol,jmlbrs);
+                        double[][] matriksSPL = new double[jmlkol][jmlbrs];                      
+                        matriksSPL = load.LoadMatriks(jmlkol,jmlbaris);
+                        currentMatriks.inputMatriks(matriksSPL, jmlkol, jmlbrs);
+                        System.out.println("Apakah hasil akan disimpan (y/n) ?");
+                        answer = pilih.next().charAt(0);
+                        if (answer == 'y') {
+                            doGauss.cramerSPL(matriksSPL);                               
+                            result.printHasilPersamaan(doGauss.cramerSPL(matriksSPL));
+                            result.SaveArrayIntoFile(doGauss.cramerSPL(matriksSPL));
+                       }
+                        else {
+                            doGauss.cramerSPL(matriksSPL);
+                            System.out.println("Solusinya : ");
+                            result.printHasilPersamaan(doGauss.cramerSPL(matriksSPL));
+                        }
                     }
                         break;
 
