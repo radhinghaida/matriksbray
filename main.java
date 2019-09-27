@@ -67,6 +67,37 @@ class main {
                             }
 
                         }
+                        else {
+                            int row, col;
+                            char answer;
+                            row = 0;
+                            col = 0;
+                            LoadFile loadfile = new LoadFile();
+                            loadfile.LoadMatriks(col, row);
+                            double[][] Aug = new double[col][row];
+                            Aug = loadfile.LoadMatriks(col, row);
+                            double[][] A = new double[col-1][row];
+                            double[] B = new double[row];
+
+                            A = currentMatriks.convertAugtoNormalMat(Aug);
+                            B = currentMatriks.convertAugtoNormalRightSide(M);
+                            System.out.println("Apakah hasil akan disimpan (y/n) ?");
+                            answer = pilih.next().charAt(0);
+                            if (answer == 'y') {
+                                doGauss.GaussEli(A, B);
+                                System.out.println("Matriks setelah Gauss-elimination = ");
+                                result.printMatrix(A);
+                                result.solveSPLSave(A, B);
+                            }
+                            else {
+                                doGauss.GaussEli(A, B);
+                                System.out.println("Matriks setelah Gauss-elimination = ");
+                                result.printMatrix(A);
+                                doGauss.solveSPL(A, B);
+                            }
+
+                        }
+
                         break;
 
                     case 2:
@@ -97,6 +128,38 @@ class main {
                             }
 
                     }
+
+                    else {
+                        int row, col;
+                            char answer;
+                            row = 0;
+                            col = 0;
+                            LoadFile loadfile = new LoadFile();
+                            loadfile.LoadMatriks(col, row);
+                            double[][] Aug = new double[col][row];
+                            Aug = loadfile.LoadMatriks(col, row);
+                            double[][] A = new double[col-1][row];
+                            double[] B = new double[row];
+
+                            A = currentMatriks.convertAugtoNormalMat(Aug);
+                            B = currentMatriks.convertAugtoNormalRightSide(M);
+                            System.out.println("Apakah hasil akan disimpan (y/n) ?");
+                            answer = pilih.next().charAt(0);
+                            if (answer == 'y') {
+                                doGauss.GaussJordan(A, B);
+                                System.out.println("Matriks setelah Gauss-Jordan = ");
+                                result.printMatrix(A);
+                                result.solveSPLSave(A, B);
+                            }
+                            else {
+                                doGauss.GaussJordan(A, B);
+                                System.out.println("Matriks setelah Gauss-Jordan = ");
+                                result.printMatrix(A);
+                                doGauss.solveSPL(A, B);
+                            }
+
+                    }
+
                         break;
                     case 3:
                     if (sourceType == 1){
@@ -161,13 +224,37 @@ class main {
                             System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
                             answer = det.next().charAt(0);
                             if (answer == 'y') {
+                                System.out.print(valDet);
                                 result.SaveMatriksIntoFile(copyMatDet);
                                 result.SaveDeterminantIntoFile(valDet);
                             }
 
                         }
                         else {
-                            System.out.println("Lagi dibuat sama radhin bray");
+                            int row, col;
+                            char answer;
+                            double valDet;
+                            row = 0;
+                            col = 0;
+                            LoadFile loadfile = new LoadFile();
+                            loadfile.LoadMatriks(col, row);
+                            double[][] Aug = new double[col][row];
+                            Aug = loadfile.LoadMatriks(col, row);
+
+                            valDet = findDet.gaussDeterminant(Aug);
+                            System.out.println("Determinan dari Matriks diatas adalah = " + valDet);
+                            System.out.println("");
+                            System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                            answer = pilih.next().charAt(0);
+                            if (answer == 'y') {
+                                System.out.print(valDet);
+                                result.SaveMatriksIntoFile(copyMatDet);
+                                result.SaveDeterminantIntoFile(valDet);
+                            }
+                            else {
+                                System.out.print(valDet);
+                            }
+
 
                         }
                         break;
@@ -191,6 +278,37 @@ class main {
                         if (answer == 'y') {
                             result.SaveMatriksIntoFile(copyMatDet);
                             result.SaveDeterminantIntoFile(valDet);
+                        }
+
+                    }
+
+                    else {
+                        int n, col, row;
+                        double valDet;
+                        char answer;
+
+                        row = 0;
+                        col = 0;
+                        LoadFile loadfile = new LoadFile();
+                        loadfile.LoadMatriks(col, row);
+                        double[][] Aug = new double[col][row];
+                        Aug = loadfile.LoadMatriks(col, row);
+
+                        double[][] matriksDet = new double[n][n];
+                        double[][] copyMatDet = new double[n][n];
+                        copyMatDet = currentMatriks.CopyMatriks(Aug);
+                        valDet = findDet.cofDeterminant(matriksDet);
+                        System.out.println("Determinan dari Matriks diatas adalah = " + valDet);
+                        System.out.println("");
+                        System.out.print("Hasilnya mau disimpen bray (y/n) ? ");
+                        answer = det.next().charAt(0);
+                        if (answer == 'y') {
+                            System.out.print(valDet);
+                            result.SaveMatriksIntoFile(copyMatDet);
+                            result.SaveDeterminantIntoFile(valDet);
+                        }
+                        else {
+                            System.out.print(valDet);
                         }
 
                     }
@@ -460,17 +578,17 @@ class main {
             case 6:
 
                 // Interpolasi, didalam method2nya sudah ada tawaran untuk safe file
-                int n;
-                Interpolasi getInter = new Interpolasi();
-                int jumlahInterpolasi;
-                Scanner inputInter = new Scanner(System.in);
-                n = inputInter.nextInt();
-                jumlahInterpolasi = input.nextInt();
-                double[][] persamaanInter = new double[n][n];
-                double[] hasilInter = new double[n];
-                currentMatriks.inputMatriksInterpolasi(persamaanInter, hasilInter, n);
-                getInter.solveInterpolasi(persamaanInter, hasilInter);
-                getInter.approx(persamaanInter, hasilInter);
+                    int n;
+                    Interpolasi getInter = new Interpolasi();
+                    int jumlahInterpolasi;
+                    Scanner inputInter = new Scanner(System.in);
+                    n = inputInter.nextInt();
+                    double[][] persamaanInter = new double[n][n];
+                    double[] hasilInter = new double[n];
+                    currentMatriks.inputMatriksInterpolasi(persamaanInter, hasilInter, n);
+                    getInter.solveInterpolasi(persamaanInter, hasilInter);
+                    getInter.approx(persamaanInter, hasilInter);
+                
                 break;
             case 7:
 
