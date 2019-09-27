@@ -32,6 +32,7 @@ class main {
                 GaussEli doGauss = new GaussEli();
                 System.out.println("1. Metode eliminasi gauss");
                 System.out.println("2. Metode eliminasi gauss jordan");
+                System.out.println("3. Metode Cramer");
                 System.out.print("Mau diapain nih SPLnya? ");
                 int pilihspl = spl.nextInt();
                 System.out.println("Matriksnya mau darimana gan ?");
