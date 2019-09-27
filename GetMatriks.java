@@ -92,4 +92,25 @@ public class GetMatriks {
         }
 
     }
+      
+      static double[][] convertAugtoNormalMat (double[][] M) {
+        int i, j;
+        double[][] A = new double[M.length-1][M[0].length];
+        for (i = 0; i < M[0].length - 1; i++) {
+            for (j = 0; j < M.length-1; j++) {
+                A[j][i] = M[j][i];
+            }
+            
+        }
+        return A;
+    }
+
+    static double[] convertAugtoNormalRightSide (double[][] M) {
+        int i, j;
+        double[] B = new double[M[0].length];
+        for (i = 0; i < M[0].length - 1; i++) {
+                B[i] = M[M.length][i];
+        }
+        return B;
+    }
 }
