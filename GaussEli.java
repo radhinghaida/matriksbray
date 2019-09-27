@@ -155,7 +155,7 @@ public class GaussEli {
         boolean hasSolution = true;
         double[] solutionConst = new double[B.length];
         double[][] coefVar = new double[B.length][B.length]; // Col buat Partical Solution, row isinya coef dari masing2 parameter (s,t,...)
-        char[] variable = new char[B.length];
+        char[] variable = new char[A.length];
         char mark = '`';
         totalRow = A[0].length;
         for (i = 0; i < A[0].length; i++) {
