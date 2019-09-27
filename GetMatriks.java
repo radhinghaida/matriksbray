@@ -66,9 +66,8 @@ public class GetMatriks {
         }
     }
 
-    static void inputMatriksAug(double[][] A, int row) { // Akan dipindahkan ke file GetMatriks.java
-        int i, j, col;
-        col = row + 1;
+    static void inputMatriksAug(double[][] A, int col, int row) { // Akan dipindahkan ke file GetMatriks.java
+        int i, j;
         Scanner input = new Scanner(System.in);
         for (i = 0; i < row; i++) {
             for (j = 0; j < col; j++) {
